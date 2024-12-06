@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - master  # Adjust to your branch name
-   
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
 
     steps:
       - name: Checkout code
@@ -25,13 +23,12 @@ jobs:
           ssh -o StrictHostKeyChecking=no deployer@${{ secrets.VPS_HOST }} << 'EOF'
 
             # Navigate to your application directory
-            cd /var/www/my-apps/burundi-buhire-app-api/ 
+            cd /var/www/my-apps/burundi-buhire-app-api/
             
-            # Configure git directory as safe
-            #git config --global --add safe.directory /var/www/my-apps/burundi-buhire-app-api
-
-            # Pull the latest changes
-            git pull origin master
+            # Configure the Git repository as safe
+            git config --global --add safe.directory /var/www/my-apps/burundi-buhire-app-api
             
+            # Pull the latest changes, allowing unrelated histories
+            git pull origin master --allow-unrelated-histories
           
           EOF
