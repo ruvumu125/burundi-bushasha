@@ -31,5 +31,15 @@ jobs:
             
             # Pull the latest changes
             git pull origin master --allow-unrelated-histories
+
+
+            # Build JAR file (assuming you're using Maven)
+            mvn clean package -DskipTests  # Or use `mvn clean package` if you have Maven installed
+
+            # Navigate to the directory where docker-compose.yml file is located
+            cd /var/www/my-apps/
+
+            # Rebuild and restart the Spring Boot container
+            docker-compose up -d --build my-apps-spring-boot-app
           
           EOF
