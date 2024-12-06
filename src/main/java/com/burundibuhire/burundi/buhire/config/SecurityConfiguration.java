@@ -40,6 +40,10 @@ public class SecurityConfiguration {
                                 "/members/burundibushasha/v1/verify/{token}",
                                 "/authentication/burundibushasha/v1/auth/authenticate",
                                 "/authentication/burundibushasha/v1/auth/refresh-token",
+                                "/volunteering_area/burundibushasha/v1/volunteering_areas/list",
+                                "/nationality/burundibushasha/v1/nationalities/list",
+                                "/country/burundibushasha/v1/countries/list",
+                                "/candidacy_field/burundibushasha/v1/candidacy_fields/list",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**")
 
