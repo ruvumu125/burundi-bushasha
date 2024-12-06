@@ -5,6 +5,7 @@ on:
     branches:
       - master  # Adjust to your branch name
 
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -39,6 +40,6 @@ jobs:
             cd /var/www/my-apps/
 
             # Rebuild and restart the Spring Boot container
-            docker-compose up -d --build
+            docker-compose up -d --build burundi-buhire-spring-boot-app
           
           EOF
