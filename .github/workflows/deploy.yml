@@ -26,10 +26,10 @@ jobs:
             # Navigate to your application directory
             cd /var/www/my-apps/burundi-buhire-app-api/
             
-            # Configure the Git repository as safe
+            # Mark the directory as safe
             git config --global --add safe.directory /var/www/my-apps/burundi-buhire-app-api
             
-            # Pull the latest changes, allowing unrelated histories
+            # Pull the latest changes
             git pull origin master --allow-unrelated-histories
           
           EOF
