@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # Adjust to your branch name
+      
 
 jobs:
   deploy:
