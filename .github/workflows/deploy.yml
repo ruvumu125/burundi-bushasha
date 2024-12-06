@@ -40,6 +40,6 @@ jobs:
             cd /var/www/my-apps/
 
             # Rebuild and restart the Spring Boot container
-            docker-compose up -d --build my-apps-spring-boot-app
+            docker-compose up -d --build burundi-buhire-spring-boot-app
           
           EOF
