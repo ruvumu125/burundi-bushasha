@@ -5,6 +5,7 @@ on:
     branches:
       - master  # Adjust to your branch name
 
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,29 +22,24 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no deployer@${{ secrets.VPS_HOST }} << 'EOF'
-            set -e  # Stop script on errors
-
-            # Check if the directory exists, and if not, clone the repository
-            if [ ! -d "/var/www/my-apps/burundi-buhire-app-api" ]; then
-              git clone https://github.com/your-repo/burundi-buhire-app-api.git /var/www/my-apps/burundi-buhire-app-api
-            fi
 
             # Navigate to your application directory
-            cd /var/www/my-apps/burundi-buhire-app-api/ || { echo "Failed to change directory"; exit 1; }
-
+            cd /var/www/my-apps/burundi-buhire-app-api/
+            
             # Mark the directory as safe
             git config --global --add safe.directory /var/www/my-apps/burundi-buhire-app-api
-
+            
             # Pull the latest changes
-            git pull origin master --allow-unrelated-histories || { echo "Git pull failed"; exit 1; }
+            git pull origin master --allow-unrelated-histories
+
 
             # Build JAR file (assuming you're using Maven)
-            mvn clean package -DskipTests || { echo "Maven build failed"; exit 1; }
+            mvn clean package -DskipTests  # Or use `mvn clean package` if you have Maven installed
 
             # Navigate to the directory where docker-compose.yml file is located
-            cd /var/www/my-apps/ || { echo "Failed to change directory"; exit 1; }
+            cd /var/www/my-apps/
 
-            # Rebuild and restart only the Spring Boot container (replace 'spring-boot-app' with your service name)
-            docker-compose up -d --build spring-boot-app || { echo "Docker Compose build failed"; exit 1; }
-
+            # Rebuild and restart the Spring Boot container
+            docker-compose up -d --build
+          
           EOF
