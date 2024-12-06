@@ -1,0 +1,49 @@
+package com.burundibuhire.burundi.buhire.exceptions;
+
+public enum ErrorCodes {
+
+    SUPPORT_MEMBER_NOT_FOUND(1000),
+    SUPPORT_MEMBER_NOT_VALID(1001),
+    SUPPORT_MEMBER_ALREADY_EXISTS(1002),
+    SUPPORT_MEMBER_ALREADY_IN_USE(1003),
+
+    NATIONALITY_NOT_FOUND(2000),
+    NATIONALITY_NOT_VALID(2001),
+
+    VOLUNTEER_MEMBER_NOT_FOUND(3000),
+    VOLUNTEER_MEMBER_NOT_VALID(3001),
+    VOLUNTEER_MEMBER_ALREADY_EXISTS(3002),
+    VOLUNTEER_MEMBER_ALREADY_IN_USE(3003),
+
+    VOLUNTEERING_AREA_NOT_FOUND(5000),
+    VOLUNTEERING_AREA_NOT_VALID(5001),
+
+    DEGREE_NOT_FOUND(6000),
+    DEGREE_NOT_VALID(6001),
+
+    EXPERIENCE_NOT_FOUND(7000),
+    EXPERIENCE_NOT_VALID(7001),
+
+    CANDIDACY_FIELD_NOT_FOUND(8000),
+    CANDIDACY_FIELD_NOT_VALID(8001),
+
+
+
+    BAD_CREDENTIALS(12003),
+
+
+
+    // Liste des exception techniques
+    UNKNOWN_CONTEXT(14001)
+    ;
+
+    private int code;
+
+    ErrorCodes(int code) {
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+}
