@@ -73,6 +73,12 @@ public class MemberServiceImpl implements MemberService {
 
         }
 
+        if (isPasswordAlreadyTaken(userDto.getPassword())){
+
+            throw new InvalidEntityException("Un autre membre avec le même  mot de passe existe déjà ", ErrorCodes.SUPPORT_MEMBER_ALREADY_EXISTS,
+                    Collections.singletonList("Un autre membre avec le même  mot de passe existe déjà  dans la BDD"));
+        }
+
         if (userUserNameAlreadyExists(userDto.getUsername())){
 
             throw new InvalidEntityException("Un autre membre avec le même  nom d'utilisateur existe déjà ", ErrorCodes.SUPPORT_MEMBER_ALREADY_EXISTS,
@@ -87,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
                 if (ligMemberNat.getNationality() != null) {
                     Optional<Nationality> nationality = nationalityRepository.findById(ligMemberNat.getNationality().getId());
                     if (nationality.isEmpty()) {
-                        nationalityErrors.add("La nationalité avec l'ID " + ligMemberNat.getNationality().getId() + " n'existe pas");
+                        nationalityErrors.add("Veuillez renseigner votre nationalité");
                     }
                 } else {
                     nationalityErrors.add("Impossible d'enregister un membre avec une nationalité NULL");
@@ -118,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 
                 //send email
                 String token = UUID.randomUUID().toString();
-                String verificationLink = "http://localhost:8084/members/burundibushasha/v1/verify/" + token;
+                String verificationLink = "https://api.burundibuhire.com/members/burundibushasha/v1/verify/" + token;
                 Map<String, Object> data = new HashMap<>();
                 data.put("name", userDto.getFirstName()+" "+userDto.getLastName());
                 data.put("confirmationLink", verificationLink);
@@ -594,6 +600,12 @@ public class MemberServiceImpl implements MemberService {
     private boolean userUserNameAlreadyExists(String username) {
         Optional<User> member = userRepository.findByUsername(username);
         return member.isPresent();
+    }
+
+    public boolean isPasswordAlreadyTaken(String rawPassword) {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .anyMatch(user -> passwordEncoder.matches(rawPassword, user.getPassword()));
     }
 
     private static String generateMemberId(int length) {

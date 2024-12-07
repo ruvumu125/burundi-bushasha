@@ -17,7 +17,6 @@ public class SupportingMemberValidator {
         if(userDto == null) {
             errors.add("Veuillez renseigner le type de membre");
             errors.add("Veuillez renseigner le grade");
-            errors.add("Veuillez renseigner l'ID membre");
             errors.add("Veuillez renseigner le nom");
 
             errors.add("Veuillez renseigner le nom");
@@ -40,10 +39,6 @@ public class SupportingMemberValidator {
         }
         if (!StringUtils.hasLength(userDto.getMemberGrade().toString())){
             errors.add("Veuillez renseigner le grade");
-        }
-
-        if (!StringUtils.hasLength(userDto.getMemberIdNumber())){
-            errors.add("Veuillez renseigner l'ID membre");
         }
 
         if (!StringUtils.hasLength(userDto.getFirstName())){
@@ -79,7 +74,7 @@ public class SupportingMemberValidator {
         }
 
         if (!isValidEmail(userDto.getEmail())){
-            errors.add("Email invalide");
+            errors.add("Votre email n'est pas valide");
         }
 
         if (!StringUtils.hasLength(userDto.getPassword())){
