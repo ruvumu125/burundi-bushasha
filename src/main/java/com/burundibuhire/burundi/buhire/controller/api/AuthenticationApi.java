@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/authentication")
 public interface AuthenticationApi {
 
-    @PostMapping(value = Constants.AUTHENTICATION_ENDPOINT + "/authenticatooe")
+    @PostMapping(value = Constants.AUTHENTICATION_ENDPOINT + "/authenticate")
     public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest request);
 
     @PostMapping(value = Constants.AUTHENTICATION_ENDPOINT + "/refresh-token")
