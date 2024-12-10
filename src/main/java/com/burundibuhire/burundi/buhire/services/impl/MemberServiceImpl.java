@@ -110,8 +110,7 @@ public class MemberServiceImpl implements MemberService {
         String token = UUID.randomUUID().toString();
         userDto.setIsEmailVerified(false);
         userDto.setVerificationToken(token);
-        userDto.setPassword(userDto.getPassword());
-        //userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         User savedUser = userRepository.save(supportingMemberData(userDto));
 
         if (userDto.getNationalityMembers() != null) {
@@ -122,7 +121,6 @@ public class MemberServiceImpl implements MemberService {
 
                 try {
                     //send email
-
                     String verificationLink = "https://api.burundibuhire.com/members/burundibushasha/v1/verify/" + token;
                     Map<String, Object> data = new HashMap<>();
                     data.put("name", userDto.getFirstName()+" "+userDto.getLastName());
