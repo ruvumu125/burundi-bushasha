@@ -24,10 +24,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
-                .filter(User::getIsEmailVerified)
-                .filter(User:: getIsUserActive)
-                .map(user -> (UserDetails) user)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found or email not validated"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean
