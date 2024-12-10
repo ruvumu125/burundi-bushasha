@@ -4,6 +4,8 @@ import com.burundibuhire.burundi.buhire.dto.SupportingMemberDto;
 import com.burundibuhire.burundi.buhire.dto.UserDto;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -52,6 +54,9 @@ public class SupportingMemberValidator {
         if (!StringUtils.hasLength(String.valueOf(userDto.getDateOfBirth()))){
             errors.add("Veuillez renseigner la date de naissance");
         }
+        if(!is18OrOlder(userDto.getDateOfBirth())) {
+            errors.add("Vous devez avoir au moins 18 ans pour être membre");
+        }
 
         if (!StringUtils.hasLength(userDto.getGender().toString())){
             errors.add("Veuillez renseigner le sexe");
@@ -60,6 +65,7 @@ public class SupportingMemberValidator {
         if(userDto.getCountryOfBirth() == null || userDto.getCountryOfBirth().getId() == null) {
             errors.add("Veuillez selectionner le pays de naissance ");
         }
+
 
         if(userDto.getCountryOfBirth() == null || userDto.getCountryOfBirth().getId() == null) {
             errors.add("Veuillez selectionner le pays de naissance ");
@@ -119,5 +125,13 @@ public class SupportingMemberValidator {
 
         // Return whether the password matches the regex
         return matcher.matches();
+    }
+
+    public static boolean is18OrOlder(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now(); // Get the current date
+        // Calculate the age
+        int age = Period.between(birthDate, currentDate).getYears();
+        // Check if the age is 18 or older
+        return age >= 18;
     }
 }
