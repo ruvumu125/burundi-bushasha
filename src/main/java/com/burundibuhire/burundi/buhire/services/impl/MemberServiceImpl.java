@@ -117,19 +117,13 @@ public class MemberServiceImpl implements MemberService {
                 nationalityMember.setUser(savedUser);
                 nationalityMemberRepository.save(nationalityMember);
 
-                //send
-//                String token = UUID.randomUUID().toString();
-//                savedUser.setVerificationToken(token);
-//                mailService.sendVerificationEmail(userDto.getEmail().trim(), token, savedUser.getFirstName(),savedUser.getPassword());
-
-                //send email
-                String token = UUID.randomUUID().toString();
-                String verificationLink = "https://api.burundibuhire.com/members/burundibushasha/v1/verify/" + token;
-                Map<String, Object> data = new HashMap<>();
-                data.put("name", userDto.getFirstName()+" "+userDto.getLastName());
-                data.put("confirmationLink", verificationLink);
-
                 try {
+                    //send email
+                    String token = UUID.randomUUID().toString();
+                    String verificationLink = "https://api.burundibuhire.com/members/burundibushasha/v1/verify/" + token;
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("name", userDto.getFirstName()+" "+userDto.getLastName());
+                    data.put("confirmationLink", verificationLink);
                     savedUser.setVerificationToken(token);
                     mailService.sendEmail(userDto.getEmail().trim(), "Confirm Your Email", data, "email-template.html");
                 } catch (MessagingException e) {
