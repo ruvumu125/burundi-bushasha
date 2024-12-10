@@ -110,7 +110,8 @@ public class MemberServiceImpl implements MemberService {
         String token = UUID.randomUUID().toString();
         userDto.setIsEmailVerified(false);
         userDto.setVerificationToken(token);
-        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userDto.setPassword(userDto.getPassword());
+        //userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         User savedUser = userRepository.save(supportingMemberData(userDto));
 
         if (userDto.getNationalityMembers() != null) {
