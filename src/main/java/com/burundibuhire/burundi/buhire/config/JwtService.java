@@ -56,7 +56,22 @@ public class JwtService {
             User userDetails,
             long expiration
     ) {
-        extraClaims.put("role", userDetails.getMemberType().toString());
+
+        extraClaims.put("id", userDetails.getId());
+        extraClaims.put("memberIdNumber", userDetails.getMemberIdNumber());
+        extraClaims.put("firstName", userDetails.getFirstName());
+        extraClaims.put("lastName", userDetails.getLastName());
+        extraClaims.put("dateOfBirth", userDetails.getDateOfBirth().toString());
+        extraClaims.put("gender", userDetails.getGender().toString());
+        extraClaims.put("email", userDetails.getEmail());
+        extraClaims.put("phoneNumber", userDetails.getPhoneNumber());
+        extraClaims.put("whatsappNumber", userDetails.getWhatsappNumber());
+        extraClaims.put("username", userDetails.getUsername());
+        extraClaims.put("password", userDetails.getPassword());
+        extraClaims.put("memberType", userDetails.getMemberType().toString());
+        extraClaims.put("memberGrade", userDetails.getMemberGrade().toString());
+        extraClaims.put("countryOfBirth", userDetails.getCountryOfBirth().getCountryName());
+        extraClaims.put("placeOfBirth", userDetails.getPlaceOfBirth());
 
         return Jwts
                 .builder()
