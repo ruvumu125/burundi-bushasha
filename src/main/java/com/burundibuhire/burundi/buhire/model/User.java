@@ -98,8 +98,7 @@ public class User extends AbstractEntity implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<CandidateMember> candidateMembers;
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
