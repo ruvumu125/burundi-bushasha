@@ -573,10 +573,13 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean verifyToken(String token) {
-
         Optional<User> userOptional = userRepository.findByVerificationToken(token);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            if (user.getIsEmailVerified()) {
+                // Return true if the email is already verified
+                return true;
+            }
             user.setIsEmailVerified(true);
             user.setVerificationToken(null);
             userRepository.save(user);
@@ -584,6 +587,7 @@ public class MemberServiceImpl implements MemberService {
         }
         return false;
     }
+
 
 
     private boolean userEmailAlreadyExists(String email) {
