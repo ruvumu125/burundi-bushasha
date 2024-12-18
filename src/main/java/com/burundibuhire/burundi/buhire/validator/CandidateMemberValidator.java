@@ -17,6 +17,7 @@ public class CandidateMemberValidator {
         if(candidateMemberDto == null) {
 
             errors.add("Veuillez fournir les informations de l'utilisateur");
+            errors.add("Veuillez renseigner votre résidence");
             errors.add("Veuillez télécharger la photo du passeport");
             errors.add("Veuillez télécharger la photo de la face avant de la carte d'identité");
             errors.add("Veuillez télécharger la photo de la face arrière de la carte d'identité");
@@ -29,6 +30,10 @@ public class CandidateMemberValidator {
 
         if (candidateMemberDto.getUserId()==null){
             errors.add("Veuillez fournir les informations de l'utilisateur");
+        }
+
+        if (!StringUtils.hasLength(String.valueOf(candidateMemberDto.getResidence()))){
+            errors.add("Veuillez renseigner votre résidence");
         }
 
         if (!StringUtils.hasLength(candidateMemberDto.getEthnicity().toString())){

@@ -1,6 +1,8 @@
 package com.burundibuhire.burundi.buhire.validator;
 
 import com.burundibuhire.burundi.buhire.dto.VolunteerMemberDto;
+import org.springframework.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -16,6 +18,7 @@ public class VolunteerMemberValidator {
         if(volunteerMemberDto == null) {
 
             errors.add("Veuillez fournir les informations de l'utilisateur");
+            errors.add("Veuillez renseigner votre résidence");
             errors.add("Veuillez télécharger la photo du passeport");
             errors.add("Veuillez télécharger la photo de la face avant de la carte d'identité");
             errors.add("Veuillez télécharger la photo de la face arrière de la carte d'identité");
@@ -26,6 +29,9 @@ public class VolunteerMemberValidator {
 
         if (volunteerMemberDto.getUserId()==null){
             errors.add("Veuillez fournir les informations de l'utilisateur");
+        }
+        if (!StringUtils.hasLength(String.valueOf(volunteerMemberDto.getResidence()))){
+            errors.add("Veuillez renseigner votre résidence");
         }
 
         if (volunteerMemberDto.getPassportPhoto() == null || volunteerMemberDto.getPassportPhoto().isEmpty()) {

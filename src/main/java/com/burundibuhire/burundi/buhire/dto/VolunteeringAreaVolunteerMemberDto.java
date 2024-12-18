@@ -13,6 +13,7 @@ public class VolunteeringAreaVolunteerMemberDto {
 
     private Long id;
     private Long volunteerId;
+
     private VolunteeringAreaDto volunteeringArea;
 
     // Convert entity to DTO

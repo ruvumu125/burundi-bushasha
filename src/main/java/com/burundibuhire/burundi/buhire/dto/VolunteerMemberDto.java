@@ -18,6 +18,8 @@ public class VolunteerMemberDto {
 
     private Long id;
     private Long userId;
+    private String residence;
+
     private List<VolunteeringAreaVolunteerMemberDto> volunteeringAreaMembers;
     private List<DegreeDto> degrees;
     private List<ExperienceDto> experience;
@@ -33,6 +35,7 @@ public class VolunteerMemberDto {
 
         return VolunteerMemberDto.builder()
                 .id(volunteerMember.getId())
+                .residence(volunteerMember.getResidence())
                 .userId(volunteerMember.getUser() != null ? volunteerMember.getUser().getId() : null)
                 // Uncomment and implement if you have DTOs for volunteeringAreaMembers, degrees, and experience
 //                .volunteeringAreaMembers(volunteerMember.getVolunteeringAreaMembers() != null ?
@@ -67,6 +70,7 @@ public class VolunteerMemberDto {
 
         VolunteerMember volunteerMember = new VolunteerMember();
         volunteerMember.setId(volunteerMemberDto.getId());
+        volunteerMember.setResidence(volunteerMember.getResidence());
 
         // Set image fields from Base64 string to byte[]
 //        volunteerMember.setPassportPhoto(volunteerMemberDto.getPassportPhoto() != null ?

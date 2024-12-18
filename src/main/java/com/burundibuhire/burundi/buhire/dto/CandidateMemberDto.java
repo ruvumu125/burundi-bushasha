@@ -12,6 +12,7 @@ public class CandidateMemberDto {
 
     private Long id;
     private Long userId;
+    private String residence;
     private List<CandidacyFieldCandidateMemberDto> candidacyFieldCandidateMembers;
     private EthnicityEnum ethnicity;
     private List<DegreeDto> degrees;
@@ -31,6 +32,7 @@ public class CandidateMemberDto {
 
         return CandidateMemberDto.builder()
                 .id(candidateMember.getId())
+                .residence(candidateMember.getResidence())
                 .userId(candidateMember.getUser() != null ? candidateMember.getUser().getId() : null)
                 // Uncomment and implement if you have DTOs for volunteeringAreaMembers, degrees, and experience
 //                .volunteeringAreaMembers(volunteerMember.getVolunteeringAreaMembers() != null ?
@@ -65,6 +67,7 @@ public class CandidateMemberDto {
 
         CandidateMember candidateMember = new CandidateMember();
         candidateMember.setId(candidateMemberDto.getId());
+        candidateMember.setResidence(candidateMemberDto.getResidence());
 
         // Set image fields from Base64 string to byte[]
 //        volunteerMember.setPassportPhoto(volunteerMemberDto.getPassportPhoto() != null ?

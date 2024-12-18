@@ -18,6 +18,9 @@ public class CandidateMember extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "residence")
+    private String residence;
+
     @OneToMany(mappedBy = "candidateMember") // Relation avec CandidacyFieldCandidateMember
     private List<CandidacyFieldCandidateMember> candidacyFieldCandidateMembers;
 

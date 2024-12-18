@@ -18,6 +18,9 @@ public class VolunteerMember extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "residence")
+    private String residence;
+
     @OneToMany(mappedBy = "volunteerMember")
     private List<VolunteeringAreaVolunteerMember> volunteeringAreaMembers;
 
