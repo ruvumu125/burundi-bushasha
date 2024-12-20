@@ -1,5 +1,10 @@
 package com.burundibuhire.burundi.buhire.model;
 
+import com.burundibuhire.burundi.buhire.utils.DegreeEnumDeserializer;
+import com.burundibuhire.burundi.buhire.utils.JobCategoryDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(using = JobCategoryDeserializer.class)
 public enum JobCategoryEnum {
 
     POST_BY_DECREE,

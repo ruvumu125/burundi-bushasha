@@ -58,7 +58,7 @@ public class SupportingMemberValidator {
             errors.add("Vous devez avoir au moins 18 ans pour être membre");
         }
 
-        if (!StringUtils.hasLength(userDto.getGender().toString())){
+        if (userDto.getGender() == null){
             errors.add("Veuillez renseigner le sexe");
         }
 

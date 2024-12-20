@@ -221,7 +221,7 @@ public class MemberServiceImpl implements MemberService {
                 if (experienceDto.getEmployerName() == null || experienceDto.getEmployerName().isEmpty()) {
                     experienceErrors.add("L'employeur de Expérience professionelle est requis pour la ligne N° " + experienceDto.getId()+1);
                 }
-                if (experienceDto.getJobCategory() == null || experienceDto.getJobCategory().toString().isEmpty()) {
+                if (experienceDto.getJobCategory() == null) {
                     experienceErrors.add("La catégorie de Expérience professionelle est requis pour la ligne N° " + experienceDto.getId()+1);
                 }
 
@@ -399,7 +399,7 @@ public class MemberServiceImpl implements MemberService {
                 if (experienceDto.getEmployerName() == null || experienceDto.getEmployerName().isEmpty()) {
                     experienceErrors.add("L'employeur de Expérience professionelle est requis pour la ligne N° " + experienceDto.getId()+1);
                 }
-                if (experienceDto.getJobCategory() == null || experienceDto.getJobCategory().toString().isEmpty()) {
+                if (experienceDto.getJobCategory() == null ) {
                     experienceErrors.add("La catégorie de Expérience professionelle est requis pour la ligne N° " + experienceDto.getId()+1);
                 }
 
@@ -441,7 +441,7 @@ public class MemberServiceImpl implements MemberService {
                 if (politicHistoryDto.getPoliticalOrganisation() == null || politicHistoryDto.getPoliticalOrganisation().isEmpty()) {
                     politicalHistoryErrors.add("Le nom de la formation politique  est requis pour la ligne N° " + politicHistoryDto.getId()+1);
                 }
-                if (politicHistoryDto.getPoliticalCategory() == null || politicHistoryDto.getPoliticalCategory().toString().isEmpty()) {
+                if (politicHistoryDto.getPoliticalCategory() == null) {
                     politicalHistoryErrors.add("La catégorie politique est requis pour la ligne N° " + politicHistoryDto.getId()+1);
                 }
 
