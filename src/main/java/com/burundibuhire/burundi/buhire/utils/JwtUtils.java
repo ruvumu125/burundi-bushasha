@@ -91,7 +91,7 @@ public class JwtUtils {
         claims.put("verificationToken", userDetails.getVerificationToken());
         claims.put("phoneNumber", userDetails.getPhoneNumber());
         claims.put("whatsappNumber", userDetails.getWhatsappNumber());
-        claims.put("username", userDetails.getUsername());
+        claims.put("nomUtilisateur", userDetails.getNomUtilisateur());
         claims.put("password", userDetails.getPassword());
         claims.put("memberType", userDetails.getMemberType());
         claims.put("dateOfBirth", userDetails.getDateOfBirth());
