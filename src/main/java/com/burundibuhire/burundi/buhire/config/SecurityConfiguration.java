@@ -35,7 +35,9 @@ public class SecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-	    return httpSecurity.csrf(AbstractHttpConfigurer::disable)
+	    return httpSecurity
+				.cors(Customizer.withDefaults())
+				.csrf(AbstractHttpConfigurer::disable)
 	            .authorizeHttpRequests(auth -> auth
 	                    .requestMatchers(
 	                            new AntPathRequestMatcher("/**/authenticate"),
@@ -64,7 +66,7 @@ public class SecurityConfiguration {
 	            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	            //.authenticationProvider(authenticationProvider())
 	            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-	            .addFilterBefore(corsFilter(), SessionManagementFilter.class)
+	            //.addFilterBefore(corsFilter(), SessionManagementFilter.class)
 	            .build();
 	}
 
