@@ -108,6 +108,7 @@ public class MemberServiceImpl implements MemberService {
 
         //Save user
         String token = UUID.randomUUID().toString();
+        String verificationLink = "https://burundibuhire.com/verify-email/" + token;
         userDto.setIsEmailVerified(false);
         userDto.setVerificationToken(token);
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -121,7 +122,7 @@ public class MemberServiceImpl implements MemberService {
 
                 try {
                     //send email
-                    String verificationLink = "https://burundibuhire.com/verify-email/" + token;
+
                     Map<String, Object> data = new HashMap<>();
                     data.put("name", userDto.getFirstName()+" "+userDto.getLastName());
                     data.put("confirmationLink", verificationLink);
