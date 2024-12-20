@@ -39,6 +39,8 @@ public class SecurityConfiguration {
 	            .authorizeHttpRequests(auth -> auth
 	                    .requestMatchers(
 	                            new AntPathRequestMatcher("/**/authenticate"),
+								new AntPathRequestMatcher("/**/register"),
+								new AntPathRequestMatcher("/**/verify/{token}"),
 	                            new AntPathRequestMatcher("/api/access/**"),
 	                            new AntPathRequestMatcher("/h2-console/**"),
 	                            // resources for swagger to work properly
