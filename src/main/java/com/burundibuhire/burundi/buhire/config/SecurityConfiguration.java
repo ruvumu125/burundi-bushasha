@@ -41,6 +41,10 @@ public class SecurityConfiguration {
 	                            new AntPathRequestMatcher("/**/authenticate"),
 								new AntPathRequestMatcher("/**/register"),
 								new AntPathRequestMatcher("/**/verify/{token}"),
+								new AntPathRequestMatcher("/**/volunteering_areas/list"),
+								new AntPathRequestMatcher("/**/nationalities/list"),
+								new AntPathRequestMatcher("/**/countries/list"),
+								new AntPathRequestMatcher("/**/candidacy_fields/list"),
 	                            new AntPathRequestMatcher("/api/access/**"),
 	                            new AntPathRequestMatcher("/h2-console/**"),
 	                            // resources for swagger to work properly
