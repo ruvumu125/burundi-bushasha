@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService {
                     Collections.singletonList("Un autre membre avec le même  mot de passe existe déjà  dans la BDD"));
         }
 
-        if (userUserNameAlreadyExists(userDto.getUsername())){
+        if (userUserNameAlreadyExists(userDto.getNomUtilisateur())){
 
             throw new InvalidEntityException("Un autre membre avec le même  nom d'utilisateur existe déjà ", ErrorCodes.SUPPORT_MEMBER_ALREADY_EXISTS,
                     Collections.singletonList("Un autre membre avec le même  nom d'utilisateur existe déjà  dans la BDD"));
@@ -446,17 +446,17 @@ public class MemberServiceImpl implements MemberService {
                 }
 
                 if (politicHistoryDto.getFunction() == null || politicHistoryDto.getFunction().isEmpty()) {
-                    experienceErrors.add("Poste/Responsabilités est requis pour la ligne N° " + politicHistoryDto.getId()+1);
+                    politicalHistoryErrors.add("Poste/Responsabilités est requis pour la ligne N° " + politicHistoryDto.getId()+1);
                 }
                 if (politicHistoryDto.getStartDate() == null) {
-                    experienceErrors.add("La date de début est requise pour la ligne N°  " + politicHistoryDto.getId()+1);
+                    politicalHistoryErrors.add("La date de début est requise pour la ligne N°  " + politicHistoryDto.getId()+1);
                 }
                 if (politicHistoryDto.getEndDate() == null) {
-                    experienceErrors.add("La date de fin est requise pour la ligne N° " + politicHistoryDto.getId()+1);
+                    politicalHistoryErrors.add("La date de fin est requise pour la ligne N° " + politicHistoryDto.getId()+1);
                 }
                 if (politicHistoryDto.getStartDate() != null && politicHistoryDto.getEndDate() != null &&
                         politicHistoryDto.getStartDate().isAfter(politicHistoryDto.getEndDate())) {
-                    experienceErrors.add("La date de début doit être avant la date de fin pour l'expérience N° " + politicHistoryDto.getId()+1);
+                    politicalHistoryErrors.add("La date de début doit être avant la date de fin pour l'expérience N° " + politicHistoryDto.getId()+1);
                 }
 
                 // Check if the experience exists in the repository, if required
@@ -471,7 +471,7 @@ public class MemberServiceImpl implements MemberService {
 
         if (!politicalHistoryErrors.isEmpty()) {
             //log.warn("");
-            throw new InvalidEntityException(" Passé politique n'existe pas dans la BDD", ErrorCodes.EXPERIENCE_NOT_FOUND, experienceErrors);
+            throw new InvalidEntityException(" Passé politique n'existe pas dans la BDD", ErrorCodes.EXPERIENCE_NOT_FOUND, politicalHistoryErrors);
         }
 
         // SAVE VOLUNTEER MEMBER
@@ -591,12 +591,12 @@ public class MemberServiceImpl implements MemberService {
 
 
     private boolean userEmailAlreadyExists(String email) {
-        Optional<User> member = userRepository.findByEmail(email);
+        Optional<User> member = userRepository.findUserByEmail(email);
         return member.isPresent();
     }
 
-    private boolean userUserNameAlreadyExists(String username) {
-        Optional<User> member = userRepository.findByUsername(username);
+    private boolean userUserNameAlreadyExists(String nomUtilisateur) {
+        Optional<User> member = userRepository.findUserByNomUtilisateur(nomUtilisateur);
         return member.isPresent();
     }
 
@@ -633,7 +633,7 @@ public class MemberServiceImpl implements MemberService {
         member.setVerificationToken(dto.getVerificationToken());
         member.setPhoneNumber(dto.getPhoneNumber());
         member.setWhatsappNumber(dto.getWhatsappNumber());
-        member.setUsername(dto.getUsername());
+        member.setNomUtilisateur(dto.getNomUtilisateur());
         member.setPassword(dto.getPassword());
         member.setMemberType(MemberTypeEnum.MEMBRE_SYMPATHISANT);
         member.setMemberGrade(MemberGradeEnum.JUNIOR_MEMBER);

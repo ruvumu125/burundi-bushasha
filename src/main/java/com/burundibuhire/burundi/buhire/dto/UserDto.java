@@ -24,7 +24,8 @@ public class UserDto {
     private Boolean isEmailVerified;
     private String phoneNumber;
     private String whatsappNumber;
-    private String username;
+    private String nomUtilisateur;
+
     private String password;
     private String confirmPassword;
     private String verificationToken; // Added verification token field
@@ -85,7 +86,7 @@ public class UserDto {
         user.setIsEmailVerified(userDto.getIsEmailVerified());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setWhatsappNumber(userDto.getWhatsappNumber());
-        user.setUsername(userDto.getUsername());
+        user.setNomUtilisateur(userDto.getNomUtilisateur());
         user.setPassword(userDto.getPassword()); // Mapping password
         user.setVerificationToken(userDto.getVerificationToken()); // Mapping verification token
         user.setMemberType(userDto.getMemberType());

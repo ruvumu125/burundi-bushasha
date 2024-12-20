@@ -17,7 +17,4 @@ public interface AuthenticationApi {
 
     @PostMapping(value = Constants.AUTHENTICATION_ENDPOINT + "/authenticate")
     public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest request);
-
-    @PostMapping(value = Constants.AUTHENTICATION_ENDPOINT + "/refresh-token")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

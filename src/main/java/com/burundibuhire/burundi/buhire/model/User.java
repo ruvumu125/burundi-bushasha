@@ -19,7 +19,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends AbstractEntity implements UserDetails {
+public class User extends AbstractEntity {
 
     @Column(name = "member_id_number", nullable = false, unique = true) // Not a primary key
     private String memberIdNumber; // Unique identifier for the member
@@ -55,8 +55,8 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(name = "whatsapp_number")
     private String whatsappNumber;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    @Column(name = "nomutilisateur", nullable = false, unique = true)
+    private String nomUtilisateur;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -100,30 +100,6 @@ public class User extends AbstractEntity implements UserDetails {
 
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 
 
 }
