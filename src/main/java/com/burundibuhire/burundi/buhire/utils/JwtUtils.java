@@ -75,32 +75,18 @@ public class JwtUtils {
     public String generateToken(Authentication authentication) {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-
-
         Map<String, Object> claims = new HashMap<>();
+
         claims.put("id", userDetails.getId());
-        claims.put("memberIdNumber", userDetails.getMemberIdNumber());
+        claims.put("email", userDetails.getUsername());
         claims.put("firstName", userDetails.getFirstName());
         claims.put("lastName", userDetails.getLastName());
-        //claims.put("dateOfBirth", userDetails.getDateOfBirth());
-
-        claims.put("gender", userDetails.getGender().toString());
-        claims.put("email", userDetails.getEmail());
-        claims.put("isEmailVerified", userDetails.getEmailVerified());
-        claims.put("verificationToken", userDetails.getVerificationToken());
+        claims.put("gender", userDetails.getGender());
+        claims.put("nomUtilisateur", userDetails.getNomUtilisateur());
         claims.put("phoneNumber", userDetails.getPhoneNumber());
         claims.put("whatsappNumber", userDetails.getWhatsappNumber());
-        claims.put("nomUtilisateur", userDetails.getNomUtilisateur());
-        claims.put("password", userDetails.getPassword());
-        claims.put("memberType", userDetails.getMemberType());
-        claims.put("dateOfBirth", userDetails.getDateOfBirth());
-
-        claims.put("memberGrade", userDetails.getMemberGrade().toString());
-        //claims.put("countryOfBirth", userDetails.getCountryOfBirth());
-        claims.put("placeOfBirth", userDetails.getPlaceOfBirth());
-        claims.put("isUserActive", userDetails.getUserActive());
-
+        claims.put("memberIdNumber", userDetails.getMemberIdNumber());
+        claims.put("userrole", userDetails.getUserrole());
         return createToken(claims, userDetails);
     }
 

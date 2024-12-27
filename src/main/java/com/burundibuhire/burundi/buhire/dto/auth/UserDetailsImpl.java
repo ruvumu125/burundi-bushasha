@@ -1,13 +1,10 @@
 package com.burundibuhire.burundi.buhire.dto.auth;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.burundibuhire.burundi.buhire.model.*;
-import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,44 +12,32 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserDetailsImpl implements UserDetails {
 
     private final Long id;
-    private String memberIdNumber;
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-    private GenderEnum gender;
-    private String email;
-    private Boolean isEmailVerified;
-    private String verificationToken;
-    private String phoneNumber;
-    private String whatsappNumber;
-    private String nomUtilisateur;
-    private String password;
-    private MemberTypeEnum memberType;
-    private MemberGradeEnum memberGrade;
-    private Country countryOfBirth;
-    private String placeOfBirth;
-    private Boolean isUserActive;
+    private final String username;
+    private final String password;
+    private final String firstName;
+    private final String lastName;
+    private final String gender;
+    private final String nomUtilisateur;
+    private final String phoneNumber;
+    private final String whatsappNumber;
+    private final String memberIdNumber;
+    private final String userrole;
+    private final boolean isuseractive;
     private final Set<GrantedAuthority> authorities;
 
     public UserDetailsImpl(User user) {
         this.id = user.getId();
-        this.memberIdNumber=user.getMemberIdNumber();
-        this.firstName=user.getFirstName();
-        this.lastName=user.getLastName();
-        this.dateOfBirth=user.getDateOfBirth();
-        this.gender=user.getGender();
-        this.email=user.getEmail();
-        this.isEmailVerified=user.getIsEmailVerified();
-        this.verificationToken=user.getVerificationToken();
-        this.phoneNumber=user.getPhoneNumber();
-        this.whatsappNumber=user.getWhatsappNumber();
-        this.nomUtilisateur=user.getNomUtilisateur();
-        this.password=user.getPassword();
-        this.memberType=user.getMemberType();
-        this.memberGrade=user.getMemberGrade();
-        this.countryOfBirth=user.getCountryOfBirth();
-        this.placeOfBirth=user.getPlaceOfBirth();
-        this.isUserActive=user.getIsUserActive();
+        this.username = user.getEmail();
+        this.userrole = user.getMemberType().toString();
+        this.isuseractive = user.getIsUserActive();
+        this.password = user.getPassword();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.gender = user.getGender().toString();
+        this.nomUtilisateur = user.getNomUtilisateur();
+        this.phoneNumber = user.getPhoneNumber();
+        this.whatsappNumber = user.getWhatsappNumber();
+        this.memberIdNumber = user.getMemberIdNumber();
         this.authorities = new HashSet<>();
         this.authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getMemberType().toString().toUpperCase()));
     }
@@ -70,11 +55,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
-    }
-
-    public String getNomUtilisateur() {
-        return nomUtilisateur;
+        return username;
     }
 
     @Override
@@ -94,18 +75,13 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isUserActive;
+        return isuseractive;
     }
 
     // Setter methods for additional details
 
-
     public Long getId() {
         return id;
-    }
-
-    public String getMemberIdNumber() {
-        return memberIdNumber;
     }
 
     public String getFirstName() {
@@ -116,24 +92,12 @@ public class UserDetailsImpl implements UserDetails {
         return lastName;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public GenderEnum getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public Boolean getEmailVerified() {
-        return isEmailVerified;
-    }
-
-    public String getVerificationToken() {
-        return verificationToken;
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
     }
 
     public String getPhoneNumber() {
@@ -144,24 +108,16 @@ public class UserDetailsImpl implements UserDetails {
         return whatsappNumber;
     }
 
-    public MemberTypeEnum getMemberType() {
-        return memberType;
+    public String getMemberIdNumber() {
+        return memberIdNumber;
     }
 
-    public MemberGradeEnum getMemberGrade() {
-        return memberGrade;
+    public String getUserrole() {
+        return userrole;
     }
 
-    public Country getCountryOfBirth() {
-        return countryOfBirth;
-    }
-
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public Boolean getUserActive() {
-        return isUserActive;
+    public boolean isIsuseractive() {
+        return isuseractive;
     }
 }
 
