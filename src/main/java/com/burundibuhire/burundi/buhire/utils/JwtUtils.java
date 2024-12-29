@@ -1,6 +1,7 @@
 package com.burundibuhire.burundi.buhire.utils;
 
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -87,6 +88,19 @@ public class JwtUtils {
         claims.put("whatsappNumber", userDetails.getWhatsappNumber());
         claims.put("memberIdNumber", userDetails.getMemberIdNumber());
         claims.put("userrole", userDetails.getUserrole());
+
+        if (userDetails.getUserrole().equals("MEMBRE_CANDIDAT")) {
+
+            String encodedPassportPhoto = Base64.getEncoder().encodeToString(userDetails.getPassportPhoto());
+            claims.put("passportPhoto", encodedPassportPhoto);
+
+        } else if (userDetails.getUserrole().equals("MEMBRE_VOLONTAIRE")) {
+
+            String encodedPassportPhoto = Base64.getEncoder().encodeToString(userDetails.getPassportPhoto());
+            claims.put("passportPhoto", encodedPassportPhoto);
+        }
+
+
         return createToken(claims, userDetails);
     }
 

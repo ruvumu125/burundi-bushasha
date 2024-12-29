@@ -23,6 +23,7 @@ public class UserDetailsImpl implements UserDetails {
     private final String memberIdNumber;
     private final String userrole;
     private final boolean isuseractive;
+    private byte[] passportPhoto;
     private final Set<GrantedAuthority> authorities;
 
     public UserDetailsImpl(User user) {
@@ -38,6 +39,7 @@ public class UserDetailsImpl implements UserDetails {
         this.phoneNumber = user.getPhoneNumber();
         this.whatsappNumber = user.getWhatsappNumber();
         this.memberIdNumber = user.getMemberIdNumber();
+        this.passportPhoto = user.getPassportPhoto();
         this.authorities = new HashSet<>();
         this.authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getMemberType().toString().toUpperCase()));
     }
@@ -118,6 +120,10 @@ public class UserDetailsImpl implements UserDetails {
 
     public boolean isIsuseractive() {
         return isuseractive;
+    }
+
+    public byte[] getPassportPhoto() {
+        return passportPhoto;
     }
 }
 

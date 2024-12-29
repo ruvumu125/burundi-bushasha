@@ -332,9 +332,14 @@ public class MemberServiceImpl implements MemberService {
         }
 
         List<String> candidacyFieldMembersErrors = new ArrayList<>();
+        if (candidateMemberDto.getCandidacyFieldCandidateMembers().isEmpty()){
+
+            candidacyFieldMembersErrors.add("Veuillez sélectionner au moins un domaine de candidature.");
+        }
+
         if (candidateMemberDto.getCandidacyFieldCandidateMembers() != null) {
             candidateMemberDto.getCandidacyFieldCandidateMembers().forEach(ligMemberNat -> {
-                if (ligMemberNat.getCandidateId() != null) {
+                if (ligMemberNat.getCandidacyField() != null) {
                     Optional<CandidacyField> candidacyField = candidacyFieldRepository.findById(ligMemberNat.getCandidacyField().getId());
                     if (candidacyField.isEmpty()) {
                         candidacyFieldMembersErrors.add("Le domaine de candidature avec l'ID " + ligMemberNat.getCandidacyField().getId() + " n'existe pas");
